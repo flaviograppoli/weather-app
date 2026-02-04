@@ -33,7 +33,9 @@ jobs:
         run: npm install
 
       - name: Generate Android native project
-        run: npx expo prebuild --platform android --clean --non-interactive
+        run: npx expo prebuild --platform android --clean
+        env:
+          CI: 1
 
       - name: Build APK
         working-directory: ./android
