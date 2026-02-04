@@ -1,5 +1,3 @@
-// Load environment variables with proper priority (system > .env)
-import "./scripts/load-env.js";
 import type { ExpoConfig } from "expo/config";
 
 // Bundle ID format: space.manus.<project_name_dots>.<timestamp>
@@ -37,6 +35,13 @@ const env = {
   iosBundleId: bundleId,
   androidPackage: bundleId,
 };
+
+// Load environment variables if needed
+try {
+  require("./scripts/load-env.js");
+} catch (e) {
+  // Ignore if load-env fails
+}
 
 const config: ExpoConfig = {
   name: env.appName,
